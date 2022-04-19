@@ -2,10 +2,14 @@
   text-decoration: none;
   box-sizing: border-box;
 }
-
+:root {
+  --light-blue: #AFC6D9;
+  --dark-blue : #5880A2;
+  --darker-blue : #2C5D87;
+}
 body{
-    background: -webkit-linear-gradient(left, #0e251f, #21a0ab);
-    background: linear-gradient(to right, #23555c, #21a0ab);
+    background: -webkit-linear-gradient(left, var(--light-blue), var(--dark-blue));
+    background: linear-gradient(to right,  var(--light-blue), var(--dark-blue));
     font-family: 'Roboto', sans-serif;
     margin: 0;
     font-size: 15px;
@@ -25,7 +29,7 @@ header, main {
   text-decoration: none; 
   font-family: Luminari, fantasy;
   font-size: 40px;
-  color: #000000;
+  color: white;
   font-style: italic;
   text-align: center;
   vertical-align: middle;
@@ -59,7 +63,7 @@ header, main {
 
 .topnav {
   overflow: hidden;
-  background-color: #187881;
+  background-color: var(--darker-blue);
 }
 
 .topnav a {
@@ -73,7 +77,7 @@ header, main {
 }
 
 .topnav a:hover {
-  background-color: #20a1ac;
+  background-color: var(--light-blue);
   color: black;
 }
 
@@ -111,8 +115,8 @@ header, main {
     width: 90% !important;
   }
 }	
-tbody tr:nth-child(even){background-color: #388994;}
-tbody tr:nth-child(odd){background-color: #3f9aa6;}
+tbody tr:nth-child(even){background-color: var(--darker-blue);}
+tbody tr:nth-child(odd){background-color: var(--dark-blue);}
 
 tbody tr:hover {opacity: 0.8;}
 
@@ -128,13 +132,13 @@ span.psw {
   color: #fff !important;
 }
 .modal-header, .modal-footer {
-  background-color: #388994 !important;
+  background-color: var(--dark-blue)!important;
   border: none !important;
   color: #fff !important;
 }
 
 .modal-body {
-  background-color: #3f9aa6 !important;
+  background-color: var(--dark-blue) !important;
 }
 
 .modal-body input[type="text"],
