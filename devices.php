@@ -51,7 +51,7 @@ if (!isset($_SESSION['Admin-name'])) {
 		<!-- devices -->
 		<div class="row">
 			<div class="col-lg-12 mt-4">
-				<div class="panel">
+				<div class="panel-edit">
 			      <div class="panel-heading" style="font-size: 19px;">Your Devices:
 			      	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#new-device" style="font-size: 18px; float: right; margin-top: -6px;">New Device</button>
 			      </div>
@@ -81,7 +81,7 @@ if (!isset($_SESSION['Admin-name'])) {
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" name="dev_add" id="dev_add" class="btn btn-success">Create new Device</button>
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 			      </div>
 			  </form>
 		    </div>

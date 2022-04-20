@@ -57,7 +57,7 @@ if (!isset($_SESSION['Admin-name'])) {
 
 <body>
   <?php include 'header.php'; ?>
-  <section class="container py-lg-5">>
+  <section class="container py-lg-5">
     <!--User table-->
     <h1 class="slideInDown animated">Here are the Users Vehicle daily logs</h1>
     <div class="form-style-5">
@@ -78,7 +78,7 @@ if (!isset($_SESSION['Admin-name'])) {
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-lg-6 col-sm-6">
-                    <div class="panel panel-primary">
+                    <div class="panel-edit">
                       <div class="panel-heading">Filter By Date:</div>
                       <div class="panel-body">
                         <label for="Start-Date"><b>Select from this Date:</b></label>
@@ -89,7 +89,7 @@ if (!isset($_SESSION['Admin-name'])) {
                     </div>
                   </div>
                   <div class="col-lg-6 col-sm-6">
-                    <div class="panel panel-primary">
+                    <div class="panel-edit">
                       <div class="panel-heading">
                         Filter By:
                         <div class="time">
@@ -162,7 +162,7 @@ if (!isset($_SESSION['Admin-name'])) {
             </div>
             <div class="modal-footer">
               <button type="button" name="user_log" id="user_log" class="btn btn-success">Filter</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
           </form>
         </div>
