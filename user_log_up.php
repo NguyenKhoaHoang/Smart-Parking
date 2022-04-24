@@ -7,7 +7,7 @@ session_start();
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Serial Number</th>
+        <th>Vehicle Plate</th>
         <th>Card UID</th>
         <th>Device Dep</th>
         <th>Date</th>
