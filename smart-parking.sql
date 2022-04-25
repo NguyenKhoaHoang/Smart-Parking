@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 18, 2022 lúc 11:08 AM
+-- Thời gian đã tạo: Th4 25, 2022 lúc 11:20 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -62,7 +62,7 @@ CREATE TABLE `devices` (
 
 INSERT INTO `devices` (`id`, `device_name`, `device_dep`, `device_uid`, `device_date`, `device_mode`) VALUES
 (1, 'ESP32', 'DTVT', '8f19e31055c56b05', '2021-06-21', 1),
-(3, 'ESP8266', 'DTVT 20A', '8ceb36c810343326', '2021-06-22', 1);
+(3, 'ESP8266', 'DTVT 20A', '8ceb36c810343326', '2021-06-22', 0);
 
 -- --------------------------------------------------------
 
@@ -80,6 +80,7 @@ CREATE TABLE `parking_logs` (
   `check_in_date` date NOT NULL,
   `time_in` time NOT NULL,
   `time_out` time NOT NULL,
+  `check_uid` tinyint(1) NOT NULL DEFAULT 0,
   `card_out` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -87,15 +88,15 @@ CREATE TABLE `parking_logs` (
 -- Đang đổ dữ liệu cho bảng `parking_logs`
 --
 
-INSERT INTO `parking_logs` (`id`, `user_name`, `vehicle_plate`, `card_uid`, `device_uid`, `device_dep`, `check_in_date`, `time_in`, `time_out`, `card_out`) VALUES
-(1, 'B', 'fsdfds', '121321', 'fsdf', 'sdfsdf', '2022-04-17', '16:49:06', '17:49:06', 0),
-(3, 'Anh Bạn À', '24safads', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-17', '22:34:35', '22:34:42', 1),
-(4, 'Nguyễn Vis', 'gfdg5646', '1340840', '8ceb36c810343326', 'DTVT 20A', '2022-04-17', '22:37:00', '22:37:05', 1),
-(5, 'Anh Bạn À', '24safads', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-17', '22:37:20', '22:37:34', 1),
-(6, 'Anh Bạn À', '24safads', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-17', '22:37:39', '22:37:43', 1),
-(7, 'Nguyễn Vis', 'gfdg5646', '1340840', '8ceb36c810343326', 'DTVT 20A', '2022-04-17', '22:52:16', '22:52:21', 1),
-(8, 'Nguyễn Vis', 'gfdg5646', '1340840', '8ceb36c810343326', 'DTVT 20A', '2022-04-17', '22:52:31', '23:07:14', 1),
-(9, 'Anh Bạn À', '24safads', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-17', '23:07:10', '23:07:23', 1);
+INSERT INTO `parking_logs` (`id`, `user_name`, `vehicle_plate`, `card_uid`, `device_uid`, `device_dep`, `check_in_date`, `time_in`, `time_out`, `check_uid`, `card_out`) VALUES
+(57, 'Anh Bạn À', 'C256236', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-23', '21:46:40', '21:47:34', 1, 1),
+(58, 'Nguyễn Vis', '65A00450', '1340840', '8ceb36c810343326', 'DTVT 20A', '2022-04-23', '21:47:25', '21:47:44', 1, 1),
+(59, 'Nguyễn Vis', '65A00450', '1340840', '8ceb36c810343326', 'DTVT 20A', '2022-04-23', '21:50:48', '21:51:13', 1, 1),
+(60, 'Anh Bạn À', 'C256236', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-23', '21:51:09', '21:51:17', 1, 1),
+(61, 'Anh Bạn À', 'C256236', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-23', '21:52:56', '21:53:28', 1, 1),
+(62, 'Anh Bạn À', 'C256236', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-23', '21:53:44', '21:54:12', 1, 1),
+(63, 'Nguyễn Vis', '65A00450', '1340840', '8ceb36c810343326', 'DTVT 20A', '2022-04-25', '16:17:01', '16:17:04', 1, 1),
+(64, 'Anh Bạn À', 'C256236', '1633610', '8ceb36c810343326', 'DTVT 20A', '2022-04-25', '16:17:50', '16:17:54', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -123,10 +124,10 @@ CREATE TABLE `user_vehicle` (
 --
 
 INSERT INTO `user_vehicle` (`id`, `user_name`, `phone`, `gender`, `email`, `vehicle_plate`, `card_uid`, `card_select`, `init_date`, `device_uid`, `device_dep`, `add_card`) VALUES
-(3, 'None', 'None', 'Male', 'None', 'None', '704760', 0, '2022-04-17', '8ceb36c810343326', 'DTVT 20A', 0),
+(3, 'None', 'None', 'Male', 'None', 'None', '704760', 1, '2022-04-17', '8ceb36c810343326', 'DTVT 20A', 0),
 (4, 'None', 'None', 'Male', 'None', 'None', '1515010', 0, '2022-04-17', '8ceb36c810343326', 'DTVT 20A', 0),
-(5, 'Anh Bạn À', '1921681114', 'Female', 'bonvahoang321@gmail.com', '24safads', '1633610', 0, '2022-04-17', '8ceb36c810343326', 'DTVT 20A', 1),
-(6, 'Nguyễn Vis', '65645645', 'Male', 'hoangvabon321@gmail.com', 'gfdg5646', '1340840', 1, '2022-04-17', '8ceb36c810343326', 'DTVT 20A', 1);
+(5, 'Anh Bạn À', '1921681114', 'Female', 'bonvahoang321@gmail.com', 'C256236', '1633610', 0, '2022-04-17', '8ceb36c810343326', 'DTVT 20A', 1),
+(6, 'Nguyễn Vis', '65645645', 'Male', 'hoangvabon321@gmail.com', '65A00450', '1340840', 0, '2022-04-17', '8ceb36c810343326', 'DTVT 20A', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -176,7 +177,7 @@ ALTER TABLE `devices`
 -- AUTO_INCREMENT cho bảng `parking_logs`
 --
 ALTER TABLE `parking_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT cho bảng `user_vehicle`
