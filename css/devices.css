@@ -1,3 +1,8 @@
+:root {
+  --light-blue: #AFC6D9;
+  --dark-blue : #5880A2;
+  --darker-blue : #2C5D87;
+}
 h1{
   font-size: 28px !important;
   color: #000;
@@ -26,14 +31,19 @@ section {
 	display: block;
 	margin: 20px auto;
 }
-.panel {
-  border-color: #388994 !important;
+.panel-edit {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  border-color: var(--darker-blue) !important;
 }
 .panel-heading {
-  background-color: #388994 !important;
+  background-color: var(--light-blue) !important;
 }
 .panel-body {
-  background-color: #46abb9 !important;
+  background-color: var(--light-blue) !important;
 }
 
 .mode_select {

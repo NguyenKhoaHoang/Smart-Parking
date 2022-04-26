@@ -1,3 +1,8 @@
+:root {
+  --light-blue: #AFC6D9;
+  --dark-blue : #5880A2;
+  --darker-blue : #2C5D87;
+}
 h1{
   font-size: 28px !important;
   color: #000;
@@ -57,18 +62,20 @@ section {
   padding: 8px;
   color: #FFF;
   margin: 0 auto;
-  background: #388994;
+  background: var(--darker-blue);
   font-size: 15px;
   text-align: center;
   font-style: normal;
   width: 100%;
-  border: 1px solid #388994;
+  border: 1px solid var(--darker-blue);
   border-width: 1px 1px 3px;
   margin-bottom: 10px;
 }
 .modal-content input[type="submit"]:hover,
 .form-style-5 button:hover {
-  background: #317881;
+  background: var(--light-blue);
+  border: 1px solid var(--light-blue);
+  color : black;
 }
 .panel {
   border-color: #388994 !important;
@@ -135,7 +142,6 @@ section {
 .time label:last-of-type {
   border-radius: 0 4px 4px 0;
 }*/
-
 @media screen and (max-width: 600px) {
   section {
     margin: 0px 4px;
@@ -172,4 +178,21 @@ section {
   to {
     transform: translate3d(0, 0, 0);
   }
+}
+
+.panel-edit{
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  border-color: var(--darker-blue) !important;
+}
+.panel-heading {
+  background-color: var(--darker-blue) !important;
+  color:white;
+}
+.panel-body {
+  background-color: var(--darker-blue) !important;
+  color:white;
 }

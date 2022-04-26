@@ -1,3 +1,8 @@
+:root {
+  --light-blue: #AFC6D9;
+  --dark-blue : #5880A2;
+  --darker-blue : #2C5D87;
+}
 h1{
   font-size: 28px !important;
   color: #000;
@@ -131,7 +136,7 @@ td{
   cursor: pointer;
 }
 .form-style-5 .number {
-  background: #388994;
+  background: var(--darker-blue);
   color: #fff;
   height: 30px;
   width: 30px;
@@ -141,7 +146,7 @@ td{
   line-height: 30px;
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-  border-radius: 15px 15px 15px 0px;
+  border-radius: 15px 15px 15px;
 }
 
 .form-style-5 button {
@@ -150,18 +155,22 @@ td{
   padding: 10px 39px 10px 39px;
   color: #FFF;
   margin: 0 auto;
-  background: #388994;
+  background: var(--darker-blue);
   font-size: 16px;
   text-align: center;
   font-style: normal;
   width: 100%;
-  border: 1px solid #3f9aa6;
+  border: 1px solid var(--darker-blue);
   border-width: 1px 1px 3px;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 .form-style-5 button:hover {
-  background: #3f9aa6;
+  border: 1px solid var(--light-blue);
+  background: var(--light-blue);
   cursor: pointer;
+  color: black;
+  transition: linear();
 }
 .form-style-5 .alert_user {
   display: block;

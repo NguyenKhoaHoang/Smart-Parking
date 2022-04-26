@@ -41,8 +41,7 @@ if (isset($_GET['card_uid']) && isset($_GET['device_token'])) {
                         if ($row['add_card'] == 1){
                         if ($row['device_uid'] == $device_uid || $row['device_uid'] == 0){
                                 $Name = $row['user_name'];
-                                $Vehicle_plate = $row['vehicle_plate'];
-                                $sql = "SELECT * FROM parking_logs WHERE card_uid=? AND check_in_date=? AND card_out=0";
+                                $sql = "SELECT * FROM parking_logs WHERE card_uid=? AND check_in_date=? AND check_uid=0 AND card_out=0";
                                 $result = mysqli_stmt_init($conn);
                                 if (!mysqli_stmt_prepare($result, $sql)) {
                                     echo "SQL_Error_Select_logs";
@@ -54,39 +53,53 @@ if (isset($_GET['card_uid']) && isset($_GET['device_token'])) {
                                     $resultl = mysqli_stmt_get_result($result);
                                     //*****************************************************
                                     //Login
-                                    if (!$row = mysqli_fetch_assoc($resultl)){
+                                    if ($row = mysqli_fetch_assoc($resultl)){
 
-                                        $sql = "INSERT INTO parking_logs (user_name, vehicle_plate, card_uid, device_uid, device_dep, check_in_date, time_in, time_out) VALUES (? ,?, ?, ?, ?, ?, ?, ?)";
+                                        $sql="UPDATE parking_logs SET time_in=?, check_uid=1 WHERE card_uid=? AND check_in_date=? AND check_uid=0 AND card_out=0";
                                         $result = mysqli_stmt_init($conn);
                                         if (!mysqli_stmt_prepare($result, $sql)) {
-                                            echo "SQL_Error_Select_login1";
+                                            echo "SQL_Error_Update_login1";
                                             exit();
                                         }
                                         else{
-                                            $timeout = "00:00:00";
-                                            mysqli_stmt_bind_param($result, "ssssssss", $Name, $Vehicle_plate, $card_uid, $device_uid, $device_dep, $d, $t, $timeout);
+                                            mysqli_stmt_bind_param($result, "sss", $t, $card_uid, $d);
                                             mysqli_stmt_execute($result);
-
-                                            echo "login".$Name;
+                                            echo "login: ".$Name;
                                             exit();
                                         }
                                     }
                                     //*****************************************************
                                     //Logout
                                     else{
-                                        $sql="UPDATE parking_logs SET time_out=?, card_out=1 WHERE card_uid=? AND check_in_date=? AND card_out=0";
+                                        $sql = "SELECT * FROM parking_logs WHERE card_uid=? AND check_in_date=? AND check_uid=1 AND card_out=0";
                                         $result = mysqli_stmt_init($conn);
                                         if (!mysqli_stmt_prepare($result, $sql)) {
-                                            echo "SQL_Error_insert_logout1";
+                                            echo "SQL_Error_Select_logs";
                                             exit();
                                         }
                                         else{
-                                            mysqli_stmt_bind_param($result, "sss", $t, $card_uid, $d);
+                                            mysqli_stmt_bind_param($result, "ss", $card_uid, $d);
                                             mysqli_stmt_execute($result);
-
-                                            echo "logout".$Name;
-                                            exit();
+                                            $resultl = mysqli_stmt_get_result($result);
+                                            if ($row = mysqli_fetch_assoc($resultl)){
+                                                $sql="UPDATE parking_logs SET time_out=?, card_out=1 WHERE card_uid=? AND check_in_date=? AND check_uid=1 AND card_out=0";
+                                                $result = mysqli_stmt_init($conn);
+                                                if (!mysqli_stmt_prepare($result, $sql)) {
+                                                    echo "SQL_Error_Update_logout1";
+                                                    exit();
+                                                }
+                                                else{
+                                                    mysqli_stmt_bind_param($result, "sss", $t, $card_uid, $d);
+                                                    mysqli_stmt_execute($result);
+                                                    echo "logout: ".$Name;
+                                                    exit();
+                                                }
+                                            }
+                                            else{
+                                                echo "Phai nhan dien bien so truoc";
+                                            }
                                         }
+
                                     }
                                 }
                             }
