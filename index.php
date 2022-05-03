@@ -11,7 +11,7 @@ if (!isset($_SESSION['Admin-name'])) {
   <title>Users</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" type="image/png" href="images/favicon.ico">
 
   <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
