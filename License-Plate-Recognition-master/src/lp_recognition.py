@@ -2,6 +2,8 @@ from .data_utils import order_points, convert2Square, draw_labels_and_boxes
 from .lp_detection.detect import detectNumberPlate
 from .char_classification.model import CNN_Model
 
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 import cv2
 import numpy as np
 from skimage import measure
@@ -22,7 +24,8 @@ LP_DETECTION_CFG = {
 }
 
 CHAR_CLASSIFICATION_WEIGHTS = './src/weights/weight.h5'
-url = 'http://192.168.1.38:81/smart-parking/get-plate.php'
+# url = 'http://192.168.1.102:81/smart-parking/get-plate.php'
+url = 'https://smart-parking-pbl5.herokuapp.com/get-plate.php'
 
 class E2E(object):
     def __init__(self):
@@ -32,6 +35,7 @@ class E2E(object):
         self.recogChar = CNN_Model(trainable=False).model
         self.recogChar.load_weights(CHAR_CLASSIFICATION_WEIGHTS)
         self.candidates = []
+        self.character_in_plate = []
 
     def extractLP(self):
         coordinates = self.detectLP.detect(self.image)
@@ -53,7 +57,7 @@ class E2E(object):
 
             # crop number plate used by bird's eyes view transformation
             LpRegion = perspective.four_point_transform(self.image, pts)
-
+            cv2.imshow("crop", LpRegion)
             # segmentation
             self.segmentation(LpRegion)
 
@@ -81,6 +85,7 @@ class E2E(object):
         # adaptive threshold
         T = threshold_local(V, 15, offset=10, method="gaussian")
         thresh = (V > T).astype("uint8") * 255
+        cv2.imshow("adaptive", thresh)
 
         # convert black pixel of digits to white pixel
         thresh = cv2.bitwise_not(thresh)
@@ -89,6 +94,7 @@ class E2E(object):
 
         # connected components analysis
         labels = measure.label(thresh, connectivity=2, background=0)
+
 
         # loop over the unique components
         for label in np.unique(labels):
@@ -120,7 +126,14 @@ class E2E(object):
                     square_candidate = square_candidate.reshape((28, 28, 1))
                     self.candidates.append((square_candidate, (y, x)))
 
+                    self.character_in_plate.append(square_candidate)
+
+
+
+
     def recognizeChar(self):
+
+
         characters = []
         coordinates = []
 
@@ -137,6 +150,14 @@ class E2E(object):
             if result_idx[i] == 31:  # if is background or noise, ignore it
                 continue
             self.candidates.append((ALPHA_DICT[result_idx[i]], coordinates[i]))
+
+        character = cv2.hconcat(self.character_in_plate)
+        print([c[0] for c in self.candidates])
+        cv2.imshow('character',character)
+        self.character_in_plate = []
+
+
+
 
 
     def format(self):
