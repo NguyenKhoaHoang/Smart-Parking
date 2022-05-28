@@ -60,6 +60,7 @@
 		<a href="ManageUsers.php">Manage Users Vehicle</a>
 		<a href="UsersLog.php">Parking Log</a>
 		<a href="devices.php">Devices</a>
+		<a href="direct_camera.php">Direct to camera</a>
 		<?php
 		if (isset($_SESSION['Admin-name'])) {
 			echo '<a href="#" data-toggle="modal" data-target="#admin-account">' . $_SESSION['Admin-name'] . '</a>';
