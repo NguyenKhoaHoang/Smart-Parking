@@ -37,7 +37,7 @@ if(isset($_POST["plate"])){
                         $resultl = mysqli_stmt_get_result($result);
                         if ($row = mysqli_fetch_assoc($resultl)){
                             // neu da nhan dien bien so de logout ma van nhan dien tiep
-                            echo "Xe co bien so ".$plate." da nhan dien bien so de logout, vui long quet the de logout";
+                            echo " The license plate is ".$plate." recoginzed to logout, vui long quet the de logout";
                         }
                         else{
                             $sql = "SELECT * FROM parking_logs WHERE vehicle_plate=? AND check_in_date=? AND check_uid=1 AND check_cam_out=0 AND card_out=0";
