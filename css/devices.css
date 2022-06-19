@@ -91,3 +91,33 @@ section {
     right: 20px;
     height: 30px;
 }
+.slideInDown {
+  animation-name: slideInDown;
+}
+.slideInRight {
+  animation-name: slideInRight;
+} 
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
