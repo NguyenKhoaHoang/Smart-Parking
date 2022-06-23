@@ -1,14 +1,16 @@
 import cv2
 from pathlib import Path
 import argparse
+from urllib.request import urlopen
 import time
+import numpy as np
 
 from src.lp_recognition import E2E
 
 
 def get_arguments():
     arg = argparse.ArgumentParser()
-    arg.add_argument('-i', '--image_path', help='link to image', default='./samples/41.jpg')
+    arg.add_argument('-i', '--image_path', help='link to image', default='./samples/light.jpg')
 
     return arg.parse_args()
 
@@ -21,11 +23,21 @@ img_path = Path(args.image_path)
 
 # read image
 img = cv2.imread(str(img_path))
-# start
-start = time.time()
+
+# req = urlopen("http://192.168.1.69/cam-mid.jpg")
+# arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
+# img = cv2.imdecode(arr, -1) # 'Load it as it is'
+
+# cv2.imshow('lalala', img)
+# if cv2.waitKey() & 0xff == 27: quit()
+
+
 
 # load model
 model = E2E()
+
+# start
+start = time.time()
 
 # recognize license plate
 image = model.predict(img)

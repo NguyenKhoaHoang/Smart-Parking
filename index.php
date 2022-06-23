@@ -15,7 +15,7 @@ if (!isset($_SESSION['Admin-name'])) {
 
   <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
- <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" type="text/css" href="css/Users.css">
   <script>
     $(window).on("load resize ", function() {

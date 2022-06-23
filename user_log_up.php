@@ -9,9 +9,10 @@ session_start();
         <th>Name</th>
         <th>Vehicle Plate</th>
         <th>Card UID</th>
-        <th>Device Dep</th>
         <th>Date</th>
+        <th>Check Card In</th>
         <th>Time In</th>
+        <th>Check Cam Out</th>
         <th>Time Out</th>
       </tr>
     </thead>
@@ -104,9 +105,20 @@ session_start();
               <TD><?php echo $row['user_name']; ?></TD>
               <TD><?php echo $row['vehicle_plate']; ?></TD>
               <TD><?php echo $row['card_uid']; ?></TD>
-              <TD><?php echo $row['device_dep']; ?></TD>
               <TD><?php echo $row['check_in_date']; ?></TD>
+              <TD><?php
+                if ($row['check_uid'])
+                  echo "Da quet the vao"; 
+                else
+                  echo "Chua quet the vao";
+              ?></TD>
               <TD><?php echo $row['time_in']; ?></TD>
+              <TD><?php 
+                if ($row['check_cam_out'])
+                  echo "Da xac nhan bien so ra"; 
+                else
+                  echo "Chua xac nhan bien so ra";
+              ?></TD>
               <TD><?php echo $row['time_out']; ?></TD>
             </TR>
       <?php

@@ -26,6 +26,20 @@
 					</script>';
 		}
 	}
+	if (isset($_GET['error'])) {
+		if ($_GET['error'] == "nouser2") {
+			echo '	<script type="text/javascript">
+					 	setTimeout(function () {
+			                $(".up_info1").fadeIn(200);
+			                $(".up_info1").text("It already have that email!!");
+			                $("#admin-account").modal("show");
+		              	}, 500);
+		              	setTimeout(function () {
+		                	$(".up_info1").fadeOut(1000);
+		              	}, 3000);
+					</script>';
+		}
+	}
 	if (isset($_GET['success'])) {
 		if ($_GET['success'] == "updated") {
 			echo '	<script type="text/javascript">
@@ -102,8 +116,10 @@
 					<input type="text" name="up_name" placeholder="Enter your Name..." value="<?php echo $_SESSION['Admin-name']; ?>" required /><br>
 					<label for="User-mail"><b>Admin E-mail:</b></label>
 					<input type="email" name="up_email" placeholder="Enter your E-mail..." value="<?php echo $_SESSION['Admin-email']; ?>" required /><br>
-					<label for="User-psw"><b>Password</b></label>
-					<input type="password" name="up_pwd" placeholder="Enter your Password..." required /><br>
+					<label for="User-psw"><b>Old Password</b></label>
+					<input type="password" name="old_pwd" placeholder="Enter your old Password..." required /><br>
+					<label for="User-psw"><b>New Password</b></label>
+					<input type="password" name="up_pwd" placeholder="Enter your new Password..." required /><br>
 				</div>
 				<div class="modal-footer">
 					<button type="submit" name="update" class="btn btn-success">Save changes</button>

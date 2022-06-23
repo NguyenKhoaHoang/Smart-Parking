@@ -32,7 +32,6 @@ if (isset($_SESSION['Admin-name'])) {
 <?php include'header.php'; ?> 
 <main>
   <h1 class="slideInDown animated">Please, Login with the Admin E-mail and Password</h1>
-  <h1 class="slideInDown animated" id="reset">Please, Enter your Email to send the reset password link</h1>
 <!-- Log In -->
 <section>
   <div class="slideInDown animated">
