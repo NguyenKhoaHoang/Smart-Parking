@@ -12,21 +12,7 @@ if (isset($_SESSION['Admin-name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/login.css">
-    <script src="js/jquery-2.2.3.min.js"></script>
-    <script>
-      $(window).on("load resize ", function() {
-          var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
-          $('.tbl-header').css({'padding-right':scrollWidth});
-      }).resize();
-    </script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $(document).on('click', '.message', function(){
-          $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-          $('h1').animate({height: "toggle", opacity: "toggle"}, "slow");
-        });
-      });
-    </script>
+   <script src="js/jquery-2.2.3.min.js"></script>
 </head>
 <body>
 <?php include'header.php'; ?> 

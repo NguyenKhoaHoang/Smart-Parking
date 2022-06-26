@@ -21,14 +21,6 @@ if (!isset($_SESSION['Admin-name'])) {
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script src="js/manage_users.js"></script>
 	<script>
-		$(window).on("load resize ", function() {
-			var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
-			$('.tbl-header').css({
-				'padding-right': scrollWidth
-			});
-		}).resize();
-	</script>
-	<script>
 		$(document).ready(function() {
 			$.ajax({
 				url: "manage_users_up.php"
