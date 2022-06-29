@@ -16,16 +16,16 @@ const char* device_token  = "8ceb36c810343326";
 LiquidCrystal_I2C lcd(0x27,16,2);
 String number_empty;
 //************************************************************************
-//String URL = "http://192.168.1.19:81/smart-parking/getdata.php";
+String URL = "http://192.168.1.180:81/smart-parking/getdata.php";
 #define ServoPort D4 
 Servo myservo1;
 //************************************************************************
 MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance.
 //************************************************************************
 /* Set these to your desired credentials. */
-const char *ssid = "khoahoang";
-const char *password = "hoang135792486"; //computer IP or the server domain
-String URL = "http://smart-parking-pbl5.herokuapp.com/getdata.php"; //computer IP or the server domain
+const char *ssid = "404 Not Found";
+const char *password = "244466666"; //computer IP or the server domain
+//String URL = "http://smart-parking-pbl5.herokuapp.com/getdata.php"; //computer IP or the server domain
 String getData, Link;
 //********************connect to the WiFi******************
 void connectToWiFi(){
@@ -69,8 +69,8 @@ void setup() {
 
 void GetCurrentNumber(){
   Serial.println("Getting number empty place");
-//  String URLNumber = "http://192.168.1.19:81/smart-parking/show_current_number.php";
-  String URLNumber = "http://smart-parking-pbl5.herokuapp.com/show_current_number.php";
+  String URLNumber = "http://192.168.1.180:81/smart-parking/show_current_number.php";
+//  String URLNumber = "http://smart-parking-pbl5.herokuapp.com/show_current_number.php";
   if(WiFi.isConnected()){
     WiFiClient client;
     HTTPClient http;    //Declare object of class HTTPClient
@@ -111,30 +111,44 @@ void SendCardID( long Card_uid ){
     
     if (httpCode == 200) {
       if (payload.substring(0, 5) == "login") {
-        String user_name = payload.substring(5);
+        String plate = payload.substring(10);
         String number = payload.substring(8,9);
         myservo1.write(120);
         delay (2000);
         myservo1.write(0);
-    //  Serial.println(user_name);
-        number_empty = number;
-        
-
+        Serial.println(plate);
+        number_empty = number;   
+        lcd.setCursor(0,0);
+        lcd.print("IN: ");
+        lcd.print(plate);
+        lcd.print("       ");
+        delay (3000);
       }
       else if (payload.substring(0, 6) == "logout") {
-        String user_name = payload.substring(6);
+        String plate = payload.substring(11);
         String number = payload.substring(9,10);
         myservo1.write(120);
         delay (2000);
         myservo1.write(0);
-    //  Serial.println(user_name);
+        Serial.println(plate);
         number_empty = number;
+        lcd.setCursor(0,0);
+        lcd.print("OUT: ");
+        lcd.print(plate);
+        lcd.print("       ");
+        delay (3000);
       }
       else if (payload == "succesful") {
 
       }
       else if (payload == "available") {
-
+        
+      }
+      else{
+        Serial.println("Ko hop le");    
+        lcd.setCursor(1,0);
+        lcd.print("Not Acceptable");
+        delay (3000);
       }
       delay(100);
       http.end();  //Close connection
@@ -143,8 +157,8 @@ void SendCardID( long Card_uid ){
 }
 //************************************************************************
 void loop() {
-  lcd.setCursor(1,0);
-  lcd.print("Smart Parking");
+  lcd.setCursor(0,0);
+  lcd.print(" Smart Parking  ");
   lcd.setCursor(2,1);
   lcd.print("Have slot: ");
   lcd.print(number_empty);

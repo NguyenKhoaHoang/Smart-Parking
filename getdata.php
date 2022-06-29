@@ -41,6 +41,7 @@ if (isset($_GET['card_uid']) && isset($_GET['device_token'])) {
                         //An existed Card has been detected for Login or Logout
                         if ($row['add_card'] == 1){
                         if ($row['device_uid'] == $device_uid || $row['device_uid'] == 0){
+                                $Plate = $row['vehicle_plate'];
                                 $Name = $row['user_name'];
                                 $sql = "SELECT * FROM parking_logs WHERE card_uid=? AND check_in_date=? AND check_uid=0 AND check_cam_out=0 AND card_out=0";
                                 $result = mysqli_stmt_init($conn);
@@ -78,7 +79,7 @@ if (isset($_GET['card_uid']) && isset($_GET['device_token'])) {
                                             else{
                                                 mysqli_stmt_bind_param($result, "sss", $t, $card_uid, $d);
                                                 mysqli_stmt_execute($result);
-                                                echo "login: (".$number_empty.")".$Name;
+                                                echo "login: (".$number_empty.")".$Plate;
                                                 exit();
                                             }
                                         }
@@ -126,7 +127,7 @@ if (isset($_GET['card_uid']) && isset($_GET['device_token'])) {
                                                 else{
                                                     mysqli_stmt_bind_param($result, "sss", $t, $card_uid, $d);
                                                     mysqli_stmt_execute($result);
-                                                    echo "logout: (".$number_empty.")".$Name;
+                                                    echo "logout: (".$number_empty.")".$Plate;
                                                     exit();
                                                 }
                                             }
